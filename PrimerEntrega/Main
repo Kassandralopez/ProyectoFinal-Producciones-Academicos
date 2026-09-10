@@ -1,0 +1,12 @@
+package gestorDeProduccionesAcademicos;
+public class main {
+
+
+		public static void main(String[] args) {
+			VentanaInicioSesion ventana=new VentanaInicioSesion();
+			ventana.setVisible(true);
+			
+
+	}
+
+}
