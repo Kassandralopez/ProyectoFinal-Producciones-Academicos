@@ -1,0 +1,96 @@
+package gestorDeProduccionesAcademicos;
+import javax.swing.*;
+import javax.swing.BorderFactory;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class VentanaCuenta extends JFrame{
+    private VentanaPrincipal pantallaAnterior;
+
+	public  VentanaCuenta (VentanaPrincipal anterior) {
+		this.pantallaAnterior=anterior;
+
+	
+	this.setTitle("Cuentas");
+	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	this.setSize(750,500);
+	this.setLocationRelativeTo(null);
+	this.setResizable(false);
+	
+	JPanel panelGeneral = new JPanel ();
+	panelGeneral.setLayout(new BorderLayout());
+	
+	JPanel panel1= new JPanel();
+	panel1.setLayout(new GridLayout (5,2,10,10));
+
+
+	JPanel panel2 = new JPanel ();
+	panel2.setLayout(new GridLayout(1,2));
+	panel2.setBackground(Color.gray);
+	
+	JPanel panel3 = new JPanel ();
+	panel3.setLayout(new BorderLayout());
+	panel3.setBackground(Color.gray);
+	
+
+
+	JLabel labelNombre = new JLabel ("Primer Nombre");
+	JLabel labelApellido = new JLabel ("Primer Apellido:");
+	JLabel labelCedula = new JLabel ("Ingrese C.I:");
+	JLabel labelContra = new JLabel ("Ingrese contraseña:");
+	JLabel labelConfirmar = new JLabel ("Confirma contraseña:");
+	
+	JButton botonGuardar = new JButton ("Guardar");
+	JButton botonAtras = new JButton ("Atras");
+	
+	JTextField nombreText = new JTextField (10);
+	JTextField apellidoText = new JTextField (10);
+	JTextField cedulaText = new JTextField (10);
+	JTextField contraText = new JTextField (10);
+	JTextField confirmaText = new JTextField (10);
+	
+	JLabel labelCrear = new JLabel ("Crear Cuenta");
+	
+	panel3.add(labelCrear); 
+	
+	panel1.add(labelNombre);
+	panel1.add(nombreText);
+	
+	panel1.add(labelApellido);
+	panel1.add(apellidoText);
+	
+	panel1.add(labelCedula);
+	panel1.add(cedulaText);
+
+	panel1.add(labelContra);
+	panel1.add(contraText);
+	
+	panel1.add(labelConfirmar);
+	panel1.add(confirmaText);
+	
+	panel2.add(botonAtras);
+	panel2.add(botonGuardar);
+	
+	panelGeneral.add(panel1,BorderLayout.CENTER);
+	panelGeneral.add(panel2,BorderLayout.PAGE_END);
+	panelGeneral.add(panel3,BorderLayout.NORTH);
+
+	this.add(panelGeneral);
+	
+	botonAtras.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if (pantallaAnterior != null) {
+		 VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+			ventanaPrincipal.setVisible(true);      
+			
+	}
+            dispose();
+}
+
+	
+});
+	
+}
+}
