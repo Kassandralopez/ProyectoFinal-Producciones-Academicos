@@ -1,0 +1,192 @@
+package gestorDeProduccionesAcademicos;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class VentanaProyecto extends JFrame {
+    private VentanaPrincipal pantallaAnterior;
+
+	public VentanaProyecto (VentanaPrincipal anterior) {
+		this.pantallaAnterior=anterior;
+
+		this.setTitle("Proyecto");
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setSize(750,500);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		this.setLayout(new BorderLayout(0,15));
+		
+		String [] opcionesOrientacion = {"Agraria","Informatica","Carpinteria"};
+		String [] opcionesAño= {"2026","2025","2024","2023"};
+		String [] opcionesMateria = {"Matematica","Programacion","Tecnologia"};
+		String [] opcionesGrados = {"1ero","2ndo","3ero","4rto","5to","6to"};
+		
+		JPanel panel1 = new JPanel ();
+		panel1.setLayout(new  GridLayout(1, 8,5, 0));
+		JPanel panel2= new JPanel();
+		panel2.setLayout(new GridLayout (9,5,10,10));
+		JPanel panel3 = new JPanel ();
+		panel3.setLayout(new FlowLayout());
+		
+		
+		
+		
+		JComboBox comboOrientacion = new JComboBox (opcionesOrientacion);
+		JComboBox comboAño = new JComboBox (opcionesAño);
+		JComboBox comboMateria= new JComboBox (opcionesMateria);
+		JComboBox comboGrado = new JComboBox (opcionesGrados);
+		
+		JLabel espacioBlanco = new JLabel (" ");
+		JButton proyecto1 = new JButton ("Proyecto MicroBit");
+		JButton proyecto2 = new JButton ("Proyecto Mojarra");
+		JButton proyecto3 = new JButton ("Proyecto Gestor");
+		JButton proyect4 = new JButton ("Proyecto Agraria");
+		JButton proyecto5 = new JButton ("Proyecto CortoMetraje");
+		JButton proyecto6= new JButton ("Proyecto Galpon");
+		JButton proyecto7= new JButton ("Proyecto Astillero");
+
+		JButton atrasBoton = new JButton ("Atras");
+		
+		JLabel orientacionFiltro = new JLabel ("Orientacion");
+		
+		JLabel orientacionLabel = new JLabel ("Orientacion");
+		JLabel orientacion1 = new JLabel ("Informatica");
+		JLabel orientacion2= new JLabel ("Carpinteria");
+		JLabel orientacion3= new JLabel ("Informatica");
+		JLabel orientacion4= new JLabel ("Agraria");
+		JLabel orientacion5= new JLabel ("Audiovisual");
+		JLabel orientacion6= new JLabel ("Carpinteria");
+		JLabel orientacion7= new JLabel ("Carpinteria");
+		
+		
+		JLabel gradoFiltro = new JLabel ("Grado");
+		
+		JLabel gradoLabel = new JLabel ("Grado");
+		JLabel grado1 = new JLabel ("1ero");
+		JLabel grado2= new JLabel ("3ero");
+		JLabel grado3 = new JLabel ("2ndo");
+		JLabel grado4 = new JLabel ("3ero");
+		JLabel grado5 = new JLabel ("2ndo");
+		JLabel grado6 = new JLabel ("1ero");
+		JLabel grado7 = new JLabel ("2ndo");
+		
+		JLabel añoFiltro = new JLabel ("Año");
+		
+		JLabel añoLabel = new JLabel ("Año");
+		JLabel año1 = new JLabel ("2024");
+		JLabel año2= new JLabel ("2026");
+		JLabel año3 = new JLabel ("2026");
+		JLabel año4 = new JLabel ("2025");
+		JLabel año5 = new JLabel ("2024");
+		JLabel año6 = new JLabel ("2026");
+		JLabel año7 = new JLabel ("2025");
+		
+		JLabel materiaFiltro = new JLabel ("Materia");
+		
+		JLabel materiaLabel = new JLabel ("Materia");
+		JLabel materia1 = new JLabel ("Fisica");
+		JLabel materia2 = new JLabel ("Tecnologia");
+		JLabel materia3 = new JLabel ("Programacion");
+		JLabel materia4 = new JLabel ("Agraria");
+		JLabel materia5 = new JLabel ("Lengua");
+		JLabel materia6 = new JLabel ("Taller");
+		JLabel materia7 = new JLabel ("Taller");
+
+		
+
+		
+		panel1.add(orientacionFiltro);
+		panel1.add(comboOrientacion);
+		
+		panel1.add(añoFiltro);
+		panel1.add(comboAño);
+		
+		panel1.add(materiaFiltro);
+		panel1.add(comboMateria);
+		
+		panel1.add(gradoFiltro);
+		panel1.add(comboGrado);
+	
+		panel2.add(espacioBlanco);
+		panel2.add(orientacionLabel);
+		panel2.add(gradoLabel);
+		panel2.add(materiaLabel);
+		panel2.add(añoLabel);
+	
+        panel2.add(proyecto1);
+        panel2.add(orientacion1);
+        panel2.add(grado1);
+        panel2.add(materia1);
+        panel2.add(año1);
+       
+        panel2.add(proyecto2);
+        panel2.add(orientacion2);
+        panel2.add(grado2);
+        panel2.add(materia2);
+        panel2.add(año2);
+        
+        panel2.add(proyecto3);
+        panel2.add(orientacion3);
+        panel2.add(grado3);
+        panel2.add(materia3);
+        panel2.add(año3);
+        
+        panel2.add(proyect4);
+        panel2.add(orientacion4);
+        panel2.add(grado4);
+        panel2.add(materia4);
+        panel2.add(año4);
+        
+        panel2.add(proyecto5);
+        panel2.add(orientacion5);
+        panel2.add(grado5);
+        panel2.add(materia5);
+        panel2.add(año5);
+
+        
+        panel2.add(proyecto6);
+        panel2.add(orientacion6);
+        panel2.add(grado6);
+        panel2.add(materia6);
+        panel2.add(año6);
+
+        
+        panel2.add(proyecto7);
+        panel2.add(orientacion7);
+        panel2.add(grado7);
+        panel2.add(materia7);
+        panel2.add(año7);
+        
+        panel3.add(atrasBoton);
+        
+        
+        this.add(panel1, BorderLayout.NORTH);
+		this.add(panel2, BorderLayout.CENTER);
+		this.add(panel3,BorderLayout.SOUTH);
+		
+		
+		atrasBoton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if (pantallaAnterior != null) {
+			 VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+				ventanaPrincipal.setVisible(true);      
+				
+		}
+                dispose();
+    }
+
+		
+});		
+		
+		
+			
+		
+
+	}
+}
+
+
+
+
