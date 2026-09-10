@@ -1,0 +1,124 @@
+package gestorDeProduccionesAcademicos;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class VentanaInicioSesion extends JFrame {
+	
+
+	public VentanaInicioSesion () {
+		this.setTitle("Inicio Sesion Gestor de Producciones Academicas");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(750,500);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		
+		JPanel panelPrincipal = new JPanel();
+		panelPrincipal.setLayout(new GridLayout(1,2)); 
+		String[] rolAdministrador = {"Administrador"};
+		String [] rolVisitante = {"Visitante"};
+
+
+		Administrador administradores[] = new Administrador[10];
+	
+		 administradores[0] = new Administrador( "Kassandra","Lopez","64324583","1234" );
+	
+		JPanel  panelMenuIzquierda= new JPanel ();
+		panelMenuIzquierda.setLayout(new GridBagLayout());
+		JPanel panelMenuDerecha = new JPanel ();
+		
+		panelMenuDerecha.setBackground(Color.decode("#fff124"));
+
+		// Menu
+		
+		
+		JLabel poloEducativo = new JLabel ("                        Polo Educativo Tecnologico Los Arrayanes");
+		JLabel cedulaInicio = new JLabel ("                                N° Cedula (Sin puntos ni guión");
+		JTextField textoCedulaInicio = new JTextField (10);
+		JLabel contraseniaInicio = new JLabel ("                                                    Contraseña");
+		JPasswordField textoContraseniaInicio = new JPasswordField (10);
+		char[] contrasenia = textoContraseniaInicio.getPassword();
+		String contraseniaString = new String(contrasenia);
+
+		JButton botonInicio = new JButton ("Siguiente");
+		JLabel espacioBoton = new JLabel (" ");
+		
+		
+		
+		
+		  ImageIcon imagen1 = new ImageIcon("arrayanesLOGO.jpeg");
+			JLabel lblContImagen1  = new JLabel(imagen1);
+		//lblContImagen1.setSize(50, 100);
+			
+		
+	    panelMenuDerecha.setLayout(new GridBagLayout());
+
+        panelMenuDerecha.setLayout(new GridLayout(8, 1));
+
+		panelMenuDerecha.add(poloEducativo);
+        panelMenuDerecha.add(cedulaInicio);
+        panelMenuDerecha.add(textoCedulaInicio);
+        panelMenuDerecha.add(contraseniaInicio);
+        panelMenuDerecha.add(textoContraseniaInicio);
+        panelMenuDerecha.add(espacioBoton);
+        panelMenuDerecha.add(botonInicio); 
+		
+        panelMenuIzquierda.add(lblContImagen1);
+        
+		panelPrincipal.add(panelMenuIzquierda);
+		panelPrincipal.add(panelMenuDerecha);
+		
+		this.add(panelPrincipal, BorderLayout.CENTER);
+		// this.add(lblContImagen1);
+
+		  botonInicio.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					 String cedulaIngresada = textoCedulaInicio.getText();
+			           String contraseñaIngresada = textoContraseniaInicio.getText();
+			           boolean LogInExitoso = true;
+			           
+			           
+			       for (int i = 0; i < administradores.length; i++) {
+			   		
+			    	   if (administradores[i] != null) {
+			  
+			    		   if (administradores[i].getCedula().equals(cedulaIngresada) && administradores[i].getContrasenia().equals(contraseñaIngresada)) {
+			    		 
+			    			   VentanaPrincipal vent = new VentanaPrincipal();
+			    		   vent.setVisible(true);
+			    		   setVisible(false);
+			    	   }else {
+		       				JOptionPane.showMessageDialog (null,"Error, intenta de nuevo");
+
+			    		   
+			    				 
+			    	   }
+			       }
+			       				
+			     }
+				
+			  }
+		 });
+	}
+}
+
+				
+			
+
+
+		  
+
+
+		
+		
+		
+	
+		  
+		  
+		
+	
+
+
