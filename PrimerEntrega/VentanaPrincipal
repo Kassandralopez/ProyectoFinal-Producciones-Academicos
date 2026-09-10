@@ -1,0 +1,191 @@
+package gestorDeProduccionesAcademicos;
+import javax.swing.*;
+import java.awt.*;
+import javax.swing.BorderFactory;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class VentanaPrincipal extends JFrame{
+	public VentanaPrincipal() {
+		this.setLayout(new BorderLayout());
+		this.setTitle("Bienvenido!");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(750,500);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new FlowLayout(FlowLayout.LEFT));
+		panel1.setPreferredSize(new Dimension (750, 50));
+		panel1.setBackground(Color.white);
+		
+		JPanel panel2=new JPanel();
+		panel2.setLayout(new GridLayout (5,1,5,10));
+		panel2.setBackground(Color.decode("#fff124"));
+
+		JPanel panel3 = new JPanel ();
+		panel3.setLayout(new GridLayout(5,4,15,8));
+		panel3.setPreferredSize(new Dimension (600, 180));
+		panel3.setBackground(Color.gray);
+
+		 JPanel panelCentro = new JPanel();
+	     panelCentro.setLayout(new BorderLayout());
+	     panelCentro.setBackground(Color.DARK_GRAY);
+	     JPanel panelArriba = new JPanel ();
+	     
+	      panelArriba.setLayout(new FlowLayout(FlowLayout.LEFT));
+	      panelArriba.setBackground(Color.decode("#fff124"));
+
+		
+		JButton inicioBoton = new JButton ("Inicio");
+		JButton proyectoBoton = new JButton ("Proyecto");
+		JButton estudianteBoton = new JButton ("Estudiante");
+		JButton docenteBoton = new JButton ("Docente");
+		JButton cuentaBoton = new JButton ("Cuentas");
+		
+		JLabel espacioBlanco = new JLabel (" ");
+		JButton proyecto1 = new JButton ("Proyecto MicroBit");
+		JButton proyecto2 = new JButton ("Proyecto Mojarra");
+		JButton proyecto3 = new JButton ("Proyecto Gestor");
+		JButton proyect4 = new JButton ("Proyecto Agraria");
+		
+		JLabel orientacion = new JLabel ("Orientacion");
+		JLabel orientacion1 = new JLabel ("Informatica");
+		JLabel orientacion2= new JLabel ("Carpinteria");
+		JLabel orientacion3= new JLabel ("Informatica");
+		JLabel orientacion4= new JLabel ("Agraria");
+		
+		JLabel grado = new JLabel ("Grado");
+		JLabel grado1 = new JLabel ("1ero");
+		JLabel grado2= new JLabel ("3ero");
+		JLabel grado3 = new JLabel ("2ndo");
+		JLabel grado4 = new JLabel ("1ero");
+		
+		JLabel año = new JLabel ("Año");
+		JLabel año1 = new JLabel ("2024");
+		JLabel año2= new JLabel ("2026");
+		JLabel año3 = new JLabel ("2026");
+		JLabel año4 = new JLabel ("2025");
+		
+		JLabel materiaLabel = new JLabel ("Materia");
+		JLabel materia1 = new JLabel ("Fisica");
+		JLabel materia2 = new JLabel ("Tecnologia");
+		JLabel materia3 = new JLabel ("Programacion");
+		JLabel materia4 = new JLabel ("Agraria");
+		
+		JLabel bienvenido = new JLabel ("Bienvenido!");
+		
+		JButton nuevoProyecto = new JButton ("Subir nuevo proyecto");
+		
+panel2.setBorder(BorderFactory.createEmptyBorder(0,15,0,15));
+		
+		inicioBoton.setBackground(Color.decode("#498f2d"));     
+		proyectoBoton.setBackground(Color.decode("#498f2d"));         
+		estudianteBoton.setBackground(Color.decode("#498f2d"));         
+		docenteBoton.setBackground(Color.decode("#498f2d"));         
+		cuentaBoton.setBackground(Color.decode("#498f2d"));     
+		
+		panelArriba.add(bienvenido);
+		panelCentro.add(nuevoProyecto);
+		panel2.add(inicioBoton);
+		panel2.add(proyectoBoton);
+		panel2.add(estudianteBoton);
+		panel2.add(docenteBoton);
+		panel2.add(cuentaBoton);
+			
+			panel3.add(espacioBlanco);
+	        panel3.add(orientacion);
+	        panel3.add(grado);
+	        panel3.add(año);
+		
+	        panel3.add(proyecto1);
+	        panel3.add(orientacion1);
+	        panel3.add(grado1);
+	        panel3.add(año1);
+	       
+	        panel3.add(proyecto2);
+	        panel3.add(orientacion2);
+	        panel3.add(grado2);
+	        panel3.add(año2);
+	        
+	        panel3.add(proyecto3);
+	        panel3.add(orientacion3);
+	        panel3.add(grado3);
+	        panel3.add(año3);
+	        
+	        panel3.add(proyect4);
+	        panel3.add(orientacion4);
+	        panel3.add(grado4);
+	        panel3.add(año4);
+	        panelCentro.add(panel3, BorderLayout.SOUTH);
+	        panelCentro.add(panelArriba, BorderLayout.NORTH); 
+	        panelCentro.add(nuevoProyecto,BorderLayout.WEST);
+		
+		this.add(panel1,BorderLayout.NORTH);
+		this.add(panel2, BorderLayout.WEST);
+        this.add(panelCentro, BorderLayout.CENTER);
+
+		
+		inicioBoton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaPrincipal inicio = new VentanaPrincipal();
+				inicio.setVisible(true);
+			}
+		});
+			
+	
+	
+		nuevoProyecto.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				NuevoProyecto nuevoProyecto = new NuevoProyecto (VentanaPrincipal.this);
+				nuevoProyecto.setVisible(true);
+			}
+		});
+		
+		proyectoBoton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaProyecto proyecto = new VentanaProyecto (VentanaPrincipal.this);
+				proyecto.setVisible(true);
+			}
+		});	
+		
+		estudianteBoton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaEstudiante estu = new VentanaEstudiante(VentanaPrincipal.this);
+				estu.setVisible(true);
+			}
+		});
+		
+		docenteBoton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaDocente docente = new VentanaDocente (VentanaPrincipal.this);
+				docente.setVisible(true);
+				
+			}
+			
+		});
+		cuentaBoton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					VentanaCuenta cuenta = new VentanaCuenta (VentanaPrincipal.this);
+					cuenta.setVisible(true);
+				
+			}
+			
+			
+		});
+		
+			
+	}
+}
+	 
