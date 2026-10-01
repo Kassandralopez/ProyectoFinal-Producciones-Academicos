@@ -1,0 +1,163 @@
+package gestorDeProduccionesAcademicos;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class VentanaPrincipal extends JFrame {
+	public VentanaPrincipal() {
+		this.setLayout(new BorderLayout());
+		this.setTitle("Bienvenido!");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(1380, 780);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		
+		//Paneles
+
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new BorderLayout());
+		panel1.setBackground(Color.decode("#fff124"));
+		panel1.setBorder(BorderFactory.createEmptyBorder(0, 220, 0, 220));
+
+
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(new GridLayout(5,1,10,10));
+		panel2.setBackground(Color.decode("#fff124"));
+		panel2.setBorder(BorderFactory.createEmptyBorder(0, 15, 0, 15));
+
+		JPanel PanelB = new JPanel();
+		PanelB.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+		JPanel panel3 = new JPanel();
+		panel3.setLayout(new FlowLayout());
+		panel3.setBackground(Color.gray);
+		
+
+		JPanel panelCentro = new JPanel();
+		panelCentro.setLayout(new BorderLayout());
+		panelCentro.setBackground(Color.DARK_GRAY);
+		JPanel panelArribaC = new JPanel();
+
+		panelArribaC.setLayout(new FlowLayout());
+		panelArribaC.setBackground(Color.decode("#fff124"));
+		
+		//Botones y Tabla
+
+		JTextField buscador = new JTextField(10);
+		buscador.setFont(new Font("Arial", Font.BOLD, 20));
+		
+
+		JButton inicioBoton = new JButton("Inicio");
+		JButton proyectoBoton = new JButton("Proyecto");
+		JButton estudianteBoton = new JButton("Estudiante");
+		JButton docenteBoton = new JButton("Docente");
+		JButton cuentaBoton = new JButton("Cuentas");
+
+		JLabel bienvenido = new JLabel("Bienvenido!");
+
+		JButton nuevoProyecto = new JButton("Subir nuevo proyecto");
+	
+		String[] columns = { "Proyecto", "Orientacion", "Grado","Año" };
+		DefaultTableModel modeloTabla = new DefaultTableModel(columns,8);
+		JTable table = new JTable(modeloTabla);
+		JScrollPane scrollTabla = new JScrollPane(table);
+        table.setPreferredScrollableViewportSize(new Dimension(1200, 300));
+
+
+
+		inicioBoton.setBackground(Color.decode("#498f2d"));
+		proyectoBoton.setBackground(Color.decode("#498f2d"));
+		estudianteBoton.setBackground(Color.decode("#498f2d"));
+		docenteBoton.setBackground(Color.decode("#498f2d"));
+		cuentaBoton.setBackground(Color.decode("#498f2d"));
+
+		panel1.add(buscador, BorderLayout.SOUTH);
+		panel1.add(cuentaBoton,BorderLayout.SOUTH);
+		panelArribaC.add(bienvenido);
+		panelCentro.add(nuevoProyecto);
+		panel2.add(inicioBoton);
+		panel2.add(proyectoBoton);
+		panel2.add(estudianteBoton);
+		panel2.add(docenteBoton);
+		panel2.add(cuentaBoton);
+	
+		
+		panel3.add(scrollTabla);
+		
+		panelCentro.add(panel3, BorderLayout.SOUTH);
+		panelCentro.add(panelArribaC, BorderLayout.NORTH);
+		panelCentro.add(nuevoProyecto, BorderLayout.WEST);
+
+		this.add(panel1, BorderLayout.NORTH);
+		this.add(panel2, BorderLayout.WEST);
+		this.add(panelCentro, BorderLayout.CENTER);
+		
+		//Action listeners
+
+		inicioBoton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaPrincipal inicio = new VentanaPrincipal();
+				inicio.setVisible(true);
+			}
+		});
+
+		nuevoProyecto.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				NuevoProyecto nuevoProyecto = new NuevoProyecto(VentanaPrincipal.this);
+				nuevoProyecto.setVisible(true);
+			}
+		});
+
+		proyectoBoton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				VentanaProyecto proyecto = new VentanaProyecto(VentanaPrincipal.this);
+				proyecto.setVisible(true);
+			}
+		});
+
+		estudianteBoton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+
+				VentanaEstudiante estu = new VentanaEstudiante(VentanaPrincipal.this);
+				estu.setVisible(true);
+			}
+		});
+
+		docenteBoton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+
+				VentanaDocente docente = new VentanaDocente(VentanaPrincipal.this);
+				docente.setVisible(true);
+
+			}
+
+		});
+		cuentaBoton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+
+				VentanaCuenta cuenta = new VentanaCuenta(VentanaPrincipal.this, null, modeloTabla);
+				cuenta.setVisible(true);
+			}
+
+		});
+
+	}
+}
