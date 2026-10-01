@@ -1,0 +1,147 @@
+package gestorDeProduccionesAcademicos;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class VentanaDocente extends JFrame{
+    private VentanaPrincipal pantallaAnterior;
+			public VentanaDocente (VentanaPrincipal anterior) {
+				this.pantallaAnterior=anterior;
+
+			this.setTitle("Docente");
+			this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			this.setSize(750,500);
+			this.setLocationRelativeTo(null);
+			this.setResizable(false);
+			this.setLayout(new BorderLayout(10, 10));
+			
+			JPanel panel1 = new JPanel ();
+			panel1.setLayout(new  GridLayout(1, 8,5, 0));
+			JPanel panel2= new JPanel();
+			panel2.setLayout(new BorderLayout());
+			JPanel panel3 = new JPanel();
+			panel3.setLayout(new FlowLayout());
+			
+			String [] opcionesOrientacion = {"Agraria","Informatica","Carpinteria"};
+			String [] opcionesAño= {"2026","2025","2024","2023"};
+			String [] opcionesMateria = {"Matematica","Programacion","Tecnologia"};
+			String [] opcionesGrados = {"1ero","2ndo","3ero","4rto","5to","6to"};
+			
+			JComboBox comboOrientacion = new JComboBox (opcionesOrientacion);
+			JComboBox comboAño = new JComboBox (opcionesAño);
+			JComboBox comboMateria= new JComboBox (opcionesMateria);
+			JComboBox comboGrado = new JComboBox (opcionesGrados);
+			
+			JLabel espacioBlanco = new JLabel ("Docente");
+			JButton docente1 = new JButton ("Juan Almendra");
+			JButton docente2 = new JButton ("Federico Bueno");
+			JButton docente3 = new JButton ("Martina Castro");
+			JButton docente4 = new JButton ("Diana Lima");
+			JButton docente5 = new JButton ("Alvarez Dias");
+			JButton docente6= new JButton ("Eddie Barreli");
+			JButton docente7= new JButton ("Belen Suarez");
+
+			JButton atrasBoton = new JButton ("Atras");
+			
+			JLabel orientacionFiltro = new JLabel ("Orientacion");
+			
+			JLabel orientacionLabel = new JLabel ("Orientacion");
+			JLabel orientacion1 = new JLabel ("Informatica");
+			JLabel orientacion2= new JLabel ("Carpinteria");
+			JLabel orientacion3= new JLabel ("Informatica");
+			JLabel orientacion4= new JLabel ("Agraria");
+			JLabel orientacion5= new JLabel ("Audiovisual");
+			JLabel orientacion6= new JLabel ("Carpinteria");
+			JLabel orientacion7= new JLabel ("Carpinteria");
+			
+			
+			JLabel gradoFiltro = new JLabel ("Grado");
+			
+			JLabel gradoLabel = new JLabel ("Grado");
+			JLabel grado1 = new JLabel ("1ero");
+			JLabel grado2= new JLabel ("3ero");
+			JLabel grado3 = new JLabel ("2ndo");
+			JLabel grado4 = new JLabel ("3ero");
+			JLabel grado5 = new JLabel ("2ndo");
+			JLabel grado6 = new JLabel ("1ero");
+			JLabel grado7 = new JLabel ("2ndo");
+			
+			JLabel añoFiltro = new JLabel ("Año");
+			
+			JLabel añoLabel = new JLabel ("Año");
+			JLabel año1 = new JLabel ("2024");
+			JLabel año2= new JLabel ("2026");
+			JLabel año3 = new JLabel ("2026");
+			JLabel año4 = new JLabel ("2025");
+			JLabel año5 = new JLabel ("2024");
+			JLabel año6 = new JLabel ("2026");
+			JLabel año7 = new JLabel ("2025");
+			
+			JLabel materiaFiltro = new JLabel ("Materia");
+			
+			JLabel materiaLabel = new JLabel ("Materia");
+			JLabel materia1 = new JLabel ("Fisica");
+			JLabel materia2 = new JLabel ("Tecnologia");
+			JLabel materia3 = new JLabel ("Programacion");
+			JLabel materia4 = new JLabel ("Agraria");
+			JLabel materia5 = new JLabel ("Lengua");
+			JLabel materia6 = new JLabel ("Taller");
+			JLabel materia7 = new JLabel ("Taller");
+			
+			String[] columns = { "Docente", "Orientacion", "Grado","Año" };
+			DefaultTableModel modeloTablaDocente = new DefaultTableModel(columns,0) {
+		            public boolean isCellEditable(int row, int column) {
+		                return false; 
+		            }
+		        };
+		       
+			
+			JTable tableDocentes = new JTable(modeloTablaDocente);
+			JScrollPane scrollTablaDocentes = new JScrollPane(tableDocentes);
+	        tableDocentes.setPreferredScrollableViewportSize(new Dimension(1200, 300));
+			
+			panel1.add(orientacionFiltro);
+			panel1.add(comboOrientacion);
+			
+			panel1.add(añoFiltro);
+			panel1.add(comboAño);
+			
+			panel1.add(materiaFiltro);
+			panel1.add(comboMateria);
+			
+			panel1.add(gradoFiltro);
+			panel1.add(comboGrado);
+
+			panel2.add(scrollTablaDocentes);
+		    
+		    panel3.add(atrasBoton);
+		    
+		    
+		    this.add(panel1, BorderLayout.NORTH);
+			this.add(panel2, BorderLayout.CENTER);
+			this.add(panel3,BorderLayout.SOUTH);
+			
+
+			atrasBoton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+					if (pantallaAnterior != null) {
+				 VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+					ventanaPrincipal.setVisible(true);      
+					
+			}
+		            dispose();
+		}
+
+			
+		});
+
+
+
+	}
+
+
+}
