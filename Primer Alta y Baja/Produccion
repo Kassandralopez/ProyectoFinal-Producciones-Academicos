@@ -1,0 +1,68 @@
+package gestorDeProduccionesAcademicos;
+
+public class Produccion {
+	String nombre;
+	String apellido;
+	String orientacion;
+	String materia;
+	String docentes;
+	String integrantes;
+	String url;
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getApellido() {
+		return apellido;
+	}
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+	public String getOrientacion() {
+		return orientacion;
+	}
+	public void setOrientacion(String orientacion) {
+		this.orientacion = orientacion;
+	}
+	public String getMateria() {
+		return materia;
+	}
+	public void setMateria(String materia) {
+		this.materia = materia;
+	}
+	public String getDocentes() {
+		return docentes;
+	}
+	public void setDocentes(String docentes) {
+		this.docentes = docentes;
+	}
+	public String getIntegrantes() {
+		return integrantes;
+	}
+	public void setIntegrantes(String integrantes) {
+		this.integrantes = integrantes;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public Produccion(String nombre, String apellido, String orientacion, String materia, String docentes,
+			String integrantes, String url) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.orientacion = orientacion;
+		this.materia = materia;
+		this.docentes = docentes;
+		this.integrantes = integrantes;
+		this.url = url;
+	}
+	
+	
+
+
+}
