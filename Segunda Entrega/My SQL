@@ -20,21 +20,15 @@ public class MySQL {
 
 	public void altaDocente(String cedula, String nombre, String apellido, String orientacion, String grado,
 			String año) {
-		String sentencia = "INSERT INTO Docentes(Cedula,Nombre,Apellido,Orientacion,Grado,Año) VALUES(" + cedula + ",'"
-				+ nombre + "','" + apellido + "');" + orientacion + "');" + grado + "');" + año;
+		String sentencia = "INSERT INTO Docentes(Cedula,Nombre,Apellido,Orientacion,Grado,Año) "
+				+ "VALUES('" +cedula+"','"+ nombre + "','" + apellido + "','" + orientacion + "','" + grado + "','" + año
+				+ "');";
 		System.out.println(sentencia);
 		try {
 			Connection conexion = getConnection();
 			PreparedStatement declaracionSQL = conexion.prepareStatement(sentencia);
 			declaracionSQL.executeUpdate();
-			 declaracionSQL.setString(1, cedula);
-		        declaracionSQL.setString(2, nombre);
-		        declaracionSQL.setString(3, apellido);
-		        declaracionSQL.setString(4, orientacion);
-		        declaracionSQL.setString(5, grado);
-		        declaracionSQL.setString(6, año);
 
-		        int filas = declaracionSQL.executeUpdate();
 		} catch (SQLException ex) {
 			JOptionPane.showConfirmDialog(null, "Error" + ex.getMessage());
 		}
@@ -42,7 +36,7 @@ public class MySQL {
 
 	public void listarDocente(DefaultTableModel modeloTablaDocente) {
 
-		String sentencia = "Select cedula , nombre , apellido,orientacion,grado,año,rol FROM Docentes";
+		String sentencia = "SELECT Cedula, Nombre, Apellido, Orientacion, Grado, Año FROM Docentes";
 		try {
 			Connection conexion = getConnection();
 			PreparedStatement declaracionSQL = conexion.prepareStatement(sentencia);
@@ -67,13 +61,13 @@ public class MySQL {
 		}
 	}
 
-	public void borrarDocente(String cedula) {
-		String sentencia = "DELETE FROM Docentes WHERE cedula=?";
-
+	public void borrarDocente(String cedula, String nombre, String apellido,String orientacion,String grado,String año) {
+		String sentencia = "DELETE FROM Docentes WHERE Cedula=?";
 		System.out.println(sentencia);
 		try {
 			Connection conexion = getConnection();
 			PreparedStatement declaracionSQL = conexion.prepareStatement(sentencia);
+			declaracionSQL.setString(1, cedula);
 
 			int filasAfectadas = declaracionSQL.executeUpdate();
 
@@ -82,12 +76,14 @@ public class MySQL {
 			} else {
 				JOptionPane.showMessageDialog(null, "No se encontró ningun usuario con esa cedula");
 			}
-
 		} catch (SQLException ex) {
 			JOptionPane.showMessageDialog(null, "Error al borrar: " + ex.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
+
+		
 
 	// Proyecto
 
@@ -145,6 +141,7 @@ public class MySQL {
 		try {
 			Connection conexion = getConnection();
 			PreparedStatement declaracionSQL = conexion.prepareStatement(sentencia);
+			declaracionSQL.setString(1, id);
 
 			int filasAfectadas = declaracionSQL.executeUpdate();
 
@@ -212,6 +209,7 @@ public class MySQL {
 		try {
 			Connection conexion = getConnection();
 			PreparedStatement declaracionSQL = conexion.prepareStatement(sentencia);
+			declaracionSQL.setString(1, cedula);
 
 			int filasAfectadas = declaracionSQL.executeUpdate();
 
