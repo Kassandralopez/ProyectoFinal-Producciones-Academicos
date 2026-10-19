@@ -1,0 +1,84 @@
+package gestorDeProduccionesAcademicos;
+
+import javax.swing.table.DefaultTableModel;
+
+public class main {
+	MySQL bd = new MySQL();
+
+	public static void main(String[] args) {
+		VentanaInicioSesion ventana = new VentanaInicioSesion();
+		ventana.setVisible(true);
+	}
+
+//PROYECTO
+	public void listarProyecto(DefaultTableModel modeloTablaProyecto) {
+		System.out.println("Entró en Gestor Listar");
+		bd.listarProyectos(modeloTablaProyecto);
+		System.out.println("En main llegan: " + modeloTablaProyecto.getRowCount());
+
+
+	}
+
+	public boolean AltaProyecto(String nombre, String orientacion, String docentes, String materia, String integrantes,
+			String grado, String año, String url, String id) {
+		boolean exitoso = false;
+		if (nombre.length() < 3) {
+			exitoso = false;
+		} else {
+			bd.AltaProyecto(nombre, orientacion, docentes, materia, integrantes, grado, año, url, id);
+		}
+
+		return exitoso;
+	}
+
+	public void BorrarProyecto(String id) {
+		bd.BorrarProyecto(id);
+	}
+	
+	
+	
+	public void listarEstudiante( DefaultTableModel modeloTablaEstudiante) {
+		bd.listarEstudiante(modeloTablaEstudiante);
+	}
+	public void borrarEstudiante(String cedula,String nombre,String apellido,String orientacion,String grado,String año) {
+	    bd.borrarEstudiante(cedula);
+	}
+
+public boolean altaEstudiante(String cedula, String nombre,String apellido, String orientacion, String grado,String año, String rol) {
+
+    boolean exitoso = false;
+
+    if (nombre.length() < 3) {
+        exitoso = false;
+    } else {
+        bd.altaEstudiante(cedula, nombre, apellido,orientacion, grado, año, rol);
+        exitoso = true;
+    }
+
+    return exitoso;
+}
+
+
+	public void listarDocente( DefaultTableModel modeloTablaDocente) {
+		bd.listarDocente(modeloTablaDocente);
+	}
+	public void borrarDocente(String cedula,String nombre,String apellido,String orientacion,String grado,String año) {
+	    bd.borrarDocente(cedula);
+	}
+
+public boolean altaDocente(String cedula, String nombre,String apellido, String orientacion, String grado, String año) {
+
+    boolean exitoso = false;
+
+    if (nombre.length() < 3) {
+        exitoso = false;
+    } else {
+        bd.altaDocente(cedula, nombre, apellido,
+                orientacion, grado, año);
+        exitoso = true;
+    }
+
+    return exitoso;
+}
+}
+
