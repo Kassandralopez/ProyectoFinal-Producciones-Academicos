@@ -1,0 +1,154 @@
+package gestorDeProduccionesAcademicos;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+public class NuevoProyecto extends JFrame{
+	 main gestor = new main();
+		ArrayList<Produccion> listarProyectos = new ArrayList<>();
+	  
+	private DefaultTableModel modeloTablaProyecto;
+    private VentanaPrincipal pantallaAnterior;
+	public NuevoProyecto (VentanaPrincipal anterior,DefaultTableModel modeloTablaProyecto) {
+		this.pantallaAnterior=anterior;
+		
+	   
+
+		this.setTitle("Subir Nuevo Proyecto");
+		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setSize(750,500);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		
+		JPanel panelGeneral = new JPanel ();
+		panelGeneral.setLayout(new BorderLayout());
+		
+		JPanel panel1= new JPanel ();
+		panel1.setLayout(new GridLayout(8,2));
+		panel1.setBackground(Color.gray);
+		
+		JPanel panel2 = new JPanel ();
+		panel2.setLayout(new FlowLayout());
+		panel2.setBackground(Color.DARK_GRAY);
+		
+		JLabel idProyecto= new JLabel ("Id:");
+		JLabel nombreProyecto = new JLabel("Nombre Proyecto");
+		JLabel añoProyecto = new JLabel ("Año:");
+		JLabel orientacionProyecto = new JLabel ("Orientacion:");
+		JLabel docenteProyecto = new JLabel ("Docentes:");
+		JLabel materiaProyecto = new JLabel ("Materia:");
+		JLabel integrantesProyecto = new JLabel ("Integrantes:");
+		JLabel urlProyecto = new JLabel ("URL del Proyecto:");
+		JLabel gradoProyecto = new JLabel ("Grado");
+		
+		
+
+		
+		JButton botonGuardar = new JButton ("Guardar");
+		JButton botonAtras = new JButton ("Atras");
+		JButton botonActualizar = new JButton ("Actualizar");
+		
+		JTextField idProyectoTexto = new JTextField (30);
+		JTextField nombreProyectoTexto = new JTextField(30);
+		JTextField añoProyectoTexto = new JTextField(30);
+		JTextField orientacionProyectoTexto = new JTextField(30);
+		JTextField docenteProyectoTexto = new JTextField(30);
+		JTextField materiaProyectoTexto = new JTextField(30);
+		JTextField integrantesProyectoTexto = new JTextField(30);
+		JTextField urlProyectoTexto = new JTextField(30);
+		JTextField gradoProyectoTexto = new JTextField (30);
+		
+		panel1.add(nombreProyecto);
+		panel1.add(nombreProyectoTexto);
+		
+		panel1.add(añoProyecto);
+		panel1.add(añoProyectoTexto);
+		
+		panel1.add(orientacionProyecto);
+		panel1.add(orientacionProyectoTexto);
+		
+		panel1.add(docenteProyecto);
+		panel1.add(docenteProyectoTexto);
+		
+		panel1.add(materiaProyecto);
+		panel1.add(materiaProyectoTexto);
+		
+		panel1.add(integrantesProyecto);
+		panel1.add(integrantesProyectoTexto);
+		
+		panel1.add(urlProyecto);
+		panel1.add(urlProyectoTexto);
+		
+		panel1.add(idProyecto);
+		panel1.add(idProyectoTexto);
+		
+		panel1.add(gradoProyecto);
+		panel1.add(gradoProyectoTexto);
+		
+		panel2.add(botonAtras);
+		panel2.add(botonActualizar);
+		panel2.add(botonGuardar);
+
+panelGeneral.add(panel1,BorderLayout.CENTER);
+panelGeneral.add(panel2,BorderLayout.PAGE_END);
+
+	this.add(panelGeneral);
+
+		botonAtras.addActionListener(new ActionListener() {
+				@Override
+					public void actionPerformed(ActionEvent e) {
+        
+        if (pantallaAnterior != null) {
+            VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+			ventanaPrincipal.setVisible(true);
+        }
+    }
+});		
+		botonGuardar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String nombre = nombreProyectoTexto.getText();
+				String año = añoProyectoTexto.getText();
+				String or = orientacionProyectoTexto.getText();
+				String docentes = docenteProyectoTexto.getText();
+				String materia = materiaProyectoTexto.getText();
+				String integrantes = integrantesProyectoTexto.getText();
+				String url = urlProyectoTexto.getText();
+				String id = idProyectoTexto.getText();
+				String grado = gradoProyectoTexto.getText();
+
+
+
+
+				if (nombreProyectoTexto.getText().isEmpty() || añoProyectoTexto.getText().isEmpty()
+						|| orientacionProyectoTexto.getText().isEmpty()||docenteProyectoTexto.getText().isEmpty()
+						||materiaProyectoTexto.getText().isEmpty()||integrantesProyectoTexto.getText().isEmpty()
+						||urlProyectoTexto.getText().isEmpty()||idProyectoTexto.getText().isEmpty()||gradoProyectoTexto.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Error");
+				} else {
+					gestor.AltaProyecto(nombre,año,or,docentes,materia,integrantes,url,id, grado);
+					actualizarListaProyecto(modeloTablaProyecto);
+				}
+			}
+		});
+		
+
+				
+	}
+		public void actualizarListaProyecto(DefaultTableModel modeloTablaProyectos) {
+			modeloTablaProyectos.setRowCount(0);
+			for (Produccion p : listarProyectos) {
+				Object[] fila = { p.getId(), p.getNombre(), p.getMateria() };
+				modeloTablaProyectos.addRow(fila);
+			
+			}
+				
+	
+
+	}
+}
+
