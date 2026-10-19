@@ -1,0 +1,200 @@
+package gestorDeProduccionesAcademicos;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+public class VentanaCuenta extends JFrame{
+			main gestor = new main();
+
+	        VentanaPrincipal anterior;
+	        ArrayList<Docente> listaDocentes;
+	        ArrayList<Estudiante> listarEstudiante;
+	        DefaultTableModel modeloTablaDocente;
+	        DefaultTableModel modeloTablaEstudiantes;
+
+	public  VentanaCuenta (VentanaPrincipal anterior) {
+		this.anterior=anterior;
+		this.listaDocentes = listaDocentes;
+        this.modeloTablaDocente = modeloTablaDocente;
+        this.modeloTablaEstudiantes=modeloTablaEstudiantes;
+	
+	this.setTitle("Cuentas");
+	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	this.setSize(750,500);
+	this.setLocationRelativeTo(null);
+	this.setResizable(false);
+	String [] opcionesRol = {"Docente","Administrador","Estudiante"};
+
+	
+	JPanel panelGeneral = new JPanel ();
+	panelGeneral.setLayout(new BorderLayout());
+	
+	JPanel panel1= new JPanel();
+	panel1.setLayout(new GridLayout (8,2,10,10));
+
+
+	JPanel panel2 = new JPanel ();
+	panel2.setLayout(new GridLayout(1,2));
+	panel2.setBackground(Color.gray);
+	
+	JPanel panel3 = new JPanel ();
+	panel3.setLayout(new BorderLayout());
+	panel3.setBackground(Color.gray);
+	
+
+
+	JLabel labelNombre = new JLabel ("Primer Nombre");
+	JLabel labelApellido = new JLabel ("Primer Apellido:");
+	JLabel labelCedula = new JLabel ("Ingrese C.I:");
+	JLabel labelContra = new JLabel ("Ingrese contraseña:");
+	JLabel labelConfirmar = new JLabel ("Confirma contraseña:");
+	JLabel labelRol=new JLabel ("Rol");
+
+	JLabel labelOrientacion = new JLabel ("Orientacion");
+	JLabel labelGrado = new JLabel ("Grado:");
+	JLabel labelAño = new JLabel ("Año");
+	
+	JButton botonAtras = new JButton ("Atras");
+	JButton botonGuardar = new JButton ("Guardar");
+	JButton prueba = new JButton ("Prueba"); 
+
+	
+	JTextField nombreText = new JTextField (10);
+	JTextField apellidoText = new JTextField (10);
+	JTextField cedulaText = new JTextField (10);
+	JTextField contraText = new JTextField (10);
+	JTextField confirmaText = new JTextField (10);
+	JTextField orientacionText = new JTextField (10);
+	JTextField gradoText = new JTextField (10);
+	JTextField añoText = new JTextField (10);
+	
+	JLabel labelCrear = new JLabel ("Crear Cuenta");
+	
+	JComboBox comboRol = new JComboBox (opcionesRol);
+
+
+
+	panel3.add(labelCrear); 
+	
+	panel1.add(labelCedula);
+	panel1.add(cedulaText);
+	
+	panel1.add(labelNombre);
+	panel1.add(nombreText);
+	
+	panel1.add(labelApellido);
+	panel1.add(apellidoText);
+	
+	panel1.add(labelOrientacion);
+	panel1.add(orientacionText);
+	
+	panel1.add(labelGrado);
+	panel1.add(gradoText);
+	
+	panel1.add(labelAño);
+	panel1.add(añoText);
+
+	panel1.add(labelContra);
+	panel1.add(contraText);
+	
+	panel1.add(labelConfirmar);
+	panel1.add(confirmaText);
+	
+	panel1.add(labelRol);
+	panel1.add(comboRol);
+	
+	panel2.add(botonAtras);
+	panel2.add(botonGuardar);
+	
+	panel2.add(prueba);
+	panelGeneral.add(panel1,BorderLayout.CENTER);
+	panelGeneral.add(panel2,BorderLayout.PAGE_END);
+	panelGeneral.add(panel3,BorderLayout.NORTH);
+
+	this.add(panelGeneral);
+	
+	
+	
+	
+	
+	botonAtras.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			if (anterior != null) {
+			anterior.setVisible(true);      
+			
+	}
+			dispose();
+}	
+});
+	
+	botonGuardar.addActionListener(new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String cedula = cedulaText.getText();
+			String nombre = nombreText.getText();
+			String apellido = apellidoText.getText();
+			String orientacion = orientacionText.getText();
+			String grado = gradoText.getText();
+			String año = añoText.getText();
+	        String rol = comboRol.getSelectedItem().toString();
+			
+			
+			if(cedulaText.getText().isEmpty()||nombreText.getText().isEmpty()||apellidoText.getText().isEmpty()
+					||orientacionText.getText().isEmpty()||gradoText.getText().isEmpty()||añoText.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Error");
+			    return;
+
+			}
+	        	boolean guardado = false;
+
+			  if (rol.equalsIgnoreCase("Docente")) {
+
+		            guardado = gestor.altaDocente(
+		                cedula, nombre, apellido,
+		                orientacion, grado, año
+		            );
+			  } else if (rol.equalsIgnoreCase("Estudiante")) {
+
+		            guardado = gestor.altaEstudiante(
+		                cedula, nombre, apellido,
+		                orientacion, grado, año , rol
+		            );
+		}
+			   if (guardado) {
+		            JOptionPane.showMessageDialog(
+		                null, "Cuenta guardada correctamente");
+		        } else {
+		            JOptionPane.showMessageDialog(
+		                null, "No se pudo guardar la cuenta");
+		        }
+		    }
+		});
+	}
+		
+		public void actualizarListaEstudiante(DefaultTableModel modeloTablaEstudiante) {
+			modeloTablaEstudiante.setRowCount(0);
+			for (Estudiante e : listarEstudiante) {
+				Object[] fila = { e.getCedula(),e.getNombre(),e.getApellido(),e.getOrientacion(),e.getGrado(),e.getAño() };
+				modeloTablaEstudiante.addRow(fila);
+			}
+			}
+			public void actualizarListaDocente(DefaultTableModel modeloTablaDocente) {
+				modeloTablaDocente.setRowCount(0);
+				for (Estudiante e : listarEstudiante) {
+					Object[] fila = { e.getCedula(),e.getNombre(),e.getApellido(),e.getOrientacion(),e.getGrado(),e.getAño() };
+					modeloTablaDocente.addRow(fila);
+				
+				}
+			
+	
+
+
+}
+}
