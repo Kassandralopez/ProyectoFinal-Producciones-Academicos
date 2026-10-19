@@ -128,6 +128,8 @@ borrarBoton.addActionListener(new ActionListener() {
 		}  
 	}  
 });  
+gestor.listarDocente(modeloTablaDocente);  
+
   
 			}
 
