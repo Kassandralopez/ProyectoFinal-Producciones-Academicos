@@ -1,0 +1,105 @@
+package gestorDeProduccionesAcademicos;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+public class VentanaEstudiante extends JFrame{
+    private VentanaPrincipal pantallaAnterior;
+    main gestor = new main();
+
+	ArrayList<Estudiante> listarEstudiante = new ArrayList<>();
+
+	public VentanaEstudiante (VentanaPrincipal anterior) {
+		this.pantallaAnterior=anterior;
+		
+	this.setTitle("Estudiante");
+	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	this.setSize(750,500);
+	this.setLocationRelativeTo(null);
+	this.setResizable(false);
+	
+	JPanel panel1 = new JPanel ();
+	panel1.setLayout(new  GridLayout(1, 8,5, 0));
+	JPanel panel2= new JPanel();
+	panel2.setLayout(new GridLayout (9,5,15,15));
+	JPanel panel3 = new JPanel ();
+	panel3.setLayout(new FlowLayout());
+	
+	String [] opcionesOrientacion = {"Agraria","Informatica","Carpinteria"};
+	String [] opcionesAño= {"2026","2025","2024","2023"};
+	String [] opcionesMateria = {"Matematica","Programacion","Tecnologia"};
+	String [] opcionesGrados = {"1ero","2ndo","3ero","4rto","5to","6to"};
+	
+	JComboBox comboOrientacion = new JComboBox (opcionesOrientacion);
+	JComboBox comboAño = new JComboBox (opcionesAño);
+	JComboBox comboMateria= new JComboBox (opcionesMateria);
+	JComboBox comboGrado = new JComboBox (opcionesGrados);
+	
+
+	JButton atrasBoton = new JButton ("Atras");
+	JButton actualizarBoton = new JButton ("Actualizar");
+	JButton borraBoton = new JButton ("Borrar");
+	JButton modificarBoton = new JButton ("Modificar");
+	
+	JLabel orientacionFiltro = new JLabel ("Orientacion");
+	JLabel gradoFiltro = new JLabel ("Grado");
+	JLabel añoFiltro = new JLabel ("Año");
+	JLabel materiaFiltro = new JLabel ("Materia");
+
+	
+	String[] columns = { "Cedula", "Nombre", "Apellido","Orientacion", "Grado","Año" };
+	DefaultTableModel modeloTablaEstudiante = new DefaultTableModel(columns,0) {
+            public boolean isCellEditable(int row, int column) {
+                return false; 
+            }
+        };
+        JTable tableEstudiante = new JTable(modeloTablaEstudiante);
+		JScrollPane scrollTableEstudiante = new JScrollPane(tableEstudiante);
+		tableEstudiante.setPreferredScrollableViewportSize(new Dimension(1200, 300));
+	
+	panel1.add(orientacionFiltro);
+	panel1.add(comboOrientacion);
+	
+	panel1.add(añoFiltro);
+	panel1.add(comboAño);
+	
+	panel1.add(materiaFiltro);
+	panel1.add(comboMateria);
+	
+	panel1.add(gradoFiltro);
+	panel1.add(comboGrado);
+
+	panel2.add(scrollTableEstudiante);
+    
+    panel3.add(atrasBoton);
+    panel3.add(actualizarBoton);
+    panel3.add(borraBoton);
+    panel3.add(modificarBoton);
+    
+    
+    this.add(panel1, BorderLayout.NORTH);
+	this.add(panel2, BorderLayout.CENTER);
+	this.add(panel3,BorderLayout.SOUTH);
+	
+	
+	
+	atrasBoton.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+
+	        if (pantallaAnterior != null) {
+	            pantallaAnterior.setVisible(true);
+	        }
+
+	        dispose();
+	    }
+	});
+    gestor.listarEstudiante(modeloTablaEstudiante);
+
+	
+	}
+
+}
